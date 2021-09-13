@@ -29,14 +29,14 @@
       <br>
       <br>
       <div class="small-p">
-        <strong>Small&nbsp&nbsp&nbsp&nbsp</strong>
+        <strong>Small &nbsp&nbsp&nbsp&nbsp</strong>
         <form action="">
           <button type="submit" class="minus">-</button>
         </form>
         <form action="">
           <button type="submit" class="plus">+</button>
         </form>
-        <span class="smallTotalPrice">0.00</span>
+        <span class="smallTotalPrice">{{smallprice}}</span>
       </div>
 
 
@@ -48,24 +48,24 @@
         <form action="">
           <button type="submit" class="plus">+</button>
         </form>
-        <span class="mediumTotalPrice">0.00</span>
+        <span class="mediumTotalPrice">{{mediumprice}}</span>
       </div>
 
       <div class="large-p">
-        <strong>Large&nbsp&nbsp&nbsp&nbsp</strong>
+        <strong>Large &nbsp&nbsp&nbsp&nbsp</strong>
         <form action="">
           <button type="submit" class="minus">-</button>
         </form>
         <form action="">
           <button type="submit" class="plus">+</button>
         </form>
-        <span class="largeTotalPrice">{{pizzaPrice}}</span>
+        <span class="largeTotalPrice">{{largeprice}}</span>
       </div>
 
 
       <form action="">
         <strong>Total price</strong></td>
-        <span class="totalPrice">0.00</span>
+        <span class="totalPrice">{{total}}</span>
       </form>
 
 
@@ -86,7 +86,8 @@
         </div>
         <form action="/buy-large" method="POST">
           <div class="orderBox">
-            <button class="btn orderLargePizza" type="submit" style="margin-left: auto">Order large pizza</button>
+            <button name="largeP" value="87.99" class="btn orderLargePizza" type="submit"
+              style="margin-left: auto">Order large pizza</button>
           </div>
         </form>
       </div>
@@ -103,9 +104,10 @@
             3 or less other toppings.
           </div>
         </div>
-        <form action="/">
+        <form action="/buy-medium" method="POST">
           <div class="orderBox">
-            <button class="btn orderMediumPizza" type="submit" style="margin-left: auto">Order medium pizza</button>
+            <button name="mediumP" value="55.99" class="btn orderMediumPizza" type="submit"
+              style="margin-left: auto">Order medium pizza</button>
           </div>
         </form>
 
@@ -125,7 +127,10 @@
           </i>
         </div>
         <div class="orderBox">
-          <button class="btn orderSmallPizza" type="submit" style="margin-left: auto">Order small pizza</button>
+          <form action="/buy-small" method="POST">
+            <button nameP value="31.99" class="btn orderSmallPizza" type="submit" style="margin-left: auto">Order small
+              pizza</button>
+          </form>
         </div>
       </div>
     </div>

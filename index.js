@@ -4,9 +4,9 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const pizzaCart = require('./pizza-cart');
 const handlebarSetup = exphbs({
-    partialsDir: "./views/partials",
-    viewPath: './views',
-    layoutsDir: './views/layouts'
+	partialsDir: "./views/partials",
+	viewPath: './views',
+	layoutsDir: './views/layouts'
 });
 
 let app = express();
@@ -23,23 +23,44 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 // add your routes here...
+let smallprice = 0.00.toFixed(2)
+let mediumprice = 0.00.toFixed(2)
+let largeprice = 0.00.toFixed(2)
+let total = 0.00.toFixed(2)
 
-
-app.get('/', (req, res)=>{
-	res.render('index')
+app.get('/', (req, res) => {
+	total = 'R ' + pizzaInst.orderTotal().toFixed(2)
+		res.render('index', {
+			smallprice,
+			mediumprice,
+			largeprice,
+			total
+		})
 })
 
 
-app.post('/buy-large', (req, res)=>{
-	// let price = 87.99
-	
-	// pizza: pizzaInst.buy({
-	// 	pizzaPrice: price
-	// })
-	
+app.post('/buy-small', (req, res) => {
+	let smallQty = pizzaInst.smallPizza();
+	smallprice = 'R ' + pizzaInst.getSmallprice().toFixed(2)
+	smallpizza: smallQty
+	res.redirect('/')
+})//end small
+
+app.post('/buy-large', (req, res) => {
+	let largeQty = pizzaInst.largePizza();
+	largeprice = 'R ' + pizzaInst.getLargePrice().toFixed(2)
+	largepizza: largeQty
+	res.redirect('/')
 })
- 
+
+app.post('/buy-medium', (req, res) => {
+	let mediumQty = pizzaInst.mediumPizza();
+	mediumprice = 'R ' + pizzaInst.getMediunPrice().toFixed(2)
+	mediumpizza: mediumQty,
+	res.redirect('/')
+})
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, function(){
+app.listen(PORT, function () {
 	console.log('started at port: ', PORT);
 });
