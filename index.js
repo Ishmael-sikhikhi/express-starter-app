@@ -1,36 +1,44 @@
-const express = require('express');
-const exphbs  = require('express-handlebars');
+let express = require('express');
+let PizzaCart = require('./pizza-cart')
+const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+const pizzaCart = require('./pizza-cart');
+const handlebarSetup = exphbs({
+    partialsDir: "./views/partials",
+    viewPath: './views',
+    layoutsDir: './views/layouts'
+});
 
-const app = express();
-const PORT =  process.env.PORT || 3017;
+let app = express();
 
-// enable the req.body object - to allow us to use HTML forms
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+let pizzaInst = pizzaCart();
 
-// enable the static folder...
-app.use(express.static('public'));
-
-// add more middleware to allow for templating support
-
-app.engine('handlebars', exphbs());
+app.engine('handlebars', handlebarSetup);
 app.set('view engine', 'handlebars');
 
-let counter = 0;
+app.use(express.static('public'));
 
-app.get('/', function(req, res) {
-	res.render('index', {
-		counter
-	});
-});
-
-app.post('/count', function(req, res) {
-	counter++;
-	res.redirect('/')
-});
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
+// add your routes here...
 
 
-// start  the server and start listening for HTTP request on the PORT number specified...
-app.listen(PORT, function() {
-	console.log(`App started on port ${PORT}`)
+app.get('/', (req, res)=>{
+	res.render('index')
+})
+
+app.post('/buy-large', (req, res)=>{
+	let price = 87.99
+	
+	pizza: pizzaInst.buy({
+		pizzaPrice: price
+	})
+	
+})
+ 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, function(){
+	console.log('started at port: ', PORT);
 });
