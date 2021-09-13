@@ -30,11 +30,11 @@ app.get('/', (req, res)=>{
 })
 
 app.post('/buy-large', (req, res)=>{
-	let price = 87.99
+	// let price = 87.99
 	
-	pizza: pizzaInst.buy({
-		pizzaPrice: price
-	})
+	// pizza: pizzaInst.buy({
+	// 	pizzaPrice: price
+	// })
 	
 })
  
