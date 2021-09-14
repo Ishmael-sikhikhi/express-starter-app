@@ -80,7 +80,7 @@ app.post('/smallplus', (req, res) => {
 
 var ID = ''
 app.post('/medium-', (req, res)=> {
-	let mediumQty = pizzaInst.addMedium()
+	let mediumQty = pizzaInst.subtractMedium()
 	mediumprice = 'R ' + pizzaInst.getMediunPrice().toFixed(2)
 	mediumpizza: mediumQty
 
