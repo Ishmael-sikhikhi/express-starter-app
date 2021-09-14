@@ -27,9 +27,10 @@ let smallprice = 0.00.toFixed(2)
 let mediumprice = 0.00.toFixed(2)
 let largeprice = 0.00.toFixed(2)
 let total = 0.00.toFixed(2)
+let update = ''
 
 app.get('/', (req, res) => {
-	total = 'R ' + pizzaInst.orderTotal().toFixed(2)
+	total = 'R ' + pizzaInst.orderTotal()
 		res.render('index', {
 			smallprice,
 			mediumprice,
@@ -44,7 +45,7 @@ app.post('/buy-small', (req, res) => {
 	smallprice = 'R ' + pizzaInst.getSmallprice().toFixed(2)
 	smallpizza: smallQty
 	res.redirect('/')
-})//end small
+})/
 
 app.post('/buy-large', (req, res) => {
 	let largeQty = pizzaInst.largePizza();
@@ -58,6 +59,86 @@ app.post('/buy-medium', (req, res) => {
 	mediumprice = 'R ' + pizzaInst.getMediunPrice().toFixed(2)
 	mediumpizza: mediumQty,
 	res.redirect('/')
+})
+
+
+app.post('/small-', (req, res)=> {
+	let smallQty = pizzaInst.subtractSmall()
+	smallprice = 'R ' + pizzaInst.getSmallprice().toFixed(2)
+	smallpizza: smallQty
+
+	res.redirect('/')
+})
+
+app.post('/smallplus', (req, res) => {
+	let smallQty = pizzaInst.addSmall();
+	smallprice = 'R ' + pizzaInst.getSmallprice().toFixed(2)
+	smallpizza: smallQty
+	res.redirect('/')
+}) 
+// end minus & plus small pizza
+
+var ID = ''
+app.post('/medium-', (req, res)=> {
+	let mediumQty = pizzaInst.addMedium()
+	mediumprice = 'R ' + pizzaInst.getMediunPrice().toFixed(2)
+	mediumpizza: mediumQty
+
+	res.redirect('/')
+})
+app.post('/mediumplus', (req, res)=> {
+	let mediumQty = pizzaInst.addMedium()
+	mediumprice = 'R ' + pizzaInst.getMediunPrice().toFixed(2)
+	mediumpizza: mediumQty 
+
+	res.redirect('/')
+}) 
+// end minus & plus medium pizza
+
+app.post('/large-', (req, res)=> {
+	let largeQty = pizzaInst.subtractLarge()
+	largeprice = 'R ' + pizzaInst.getLargePrice().toFixed(2)
+	largepizza: largeQty
+
+	res.redirect('/')
+})
+app.post('/largeplus', (req, res) => {
+	let largeQty = pizzaInst.addLarge();
+	largeprice = 'R ' + pizzaInst.getLargePrice().toFixed(2)
+	largepizza: largeQty
+	res.redirect('/')
+})
+//end minus & plus large pizza
+
+app.post('/orders', (req, res)=>{
+	var thestatus = ' payment due '
+	
+	console.log(pizzaInst.orders().status)
+	ID = '#' + pizzaInst.orders().orderId
+	res.render('orders',{
+		status: thestatus,
+		ID,
+		amount: pizzaInst.orderTotal()
+	})
+})
+
+app.post('/pay', (req, res)=>{
+	var thestatus = 'paid'
+	var theid = req.params.name;	
+	res.render('orders',{
+		ID,
+		payment: thestatus,
+		price: pizzaInst.orderTotal()
+	})
+})
+
+app.post('/collect', (req, res)=>{
+	var thestatus = ' payment due'
+	
+	res.render('orders',{
+		ID,
+		collection: thestatus
+	})
 })
 
 const PORT = process.env.PORT || 3000;

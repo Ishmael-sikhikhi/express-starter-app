@@ -14,15 +14,7 @@
       <h1 style="border:ridge #fff; width: 100%; text-align:center">Pizza Place</h1>
     </div>
 
-    {{!-- <div class="cartTotal ">
-      <strong>Total price</strong>
-      <span class="cartTotalPrice">0.00</span>
-      <a href="#">
-        <img src="shopping-cart.png" alt="">
-      </a>
-    </div> --}}
-
-    <div class="cart">
+      <div class="cart">
       <h3>Shopping Cart</h3>
       <img src="shopping-cart.png" alt="">
 
@@ -30,10 +22,10 @@
       <br>
       <div class="small-p">
         <strong>Small &nbsp&nbsp&nbsp&nbsp</strong>
-        <form action="">
+        <form action="/small-" method="POST">
           <button type="submit" class="minus">-</button>
         </form>
-        <form action="">
+        <form action="/smallplus" method="POST">
           <button type="submit" class="plus">+</button>
         </form>
         <span class="smallTotalPrice">{{smallprice}}</span>
@@ -42,10 +34,10 @@
 
       <div class="medium-p">
         <strong>Medium</strong>
-        <form action="">
+        <form action="/medium-" method="POST">
           <button type="submit" class="minus">-</button>
         </form>
-        <form action="">
+        <form action="/mediumplus" method="POST">
           <button type="submit" class="plus">+</button>
         </form>
         <span class="mediumTotalPrice">{{mediumprice}}</span>
@@ -53,10 +45,10 @@
 
       <div class="large-p">
         <strong>Large &nbsp&nbsp&nbsp&nbsp</strong>
-        <form action="">
+        <form action="/large-" method="POST">
           <button type="submit" class="minus">-</button>
         </form>
-        <form action="">
+        <form action="/largeplus" method="POST">
           <button type="submit" class="plus">+</button>
         </form>
         <span class="largeTotalPrice">{{largeprice}}</span>
@@ -68,7 +60,9 @@
         <span class="totalPrice">{{total}}</span>
       </form>
 
-
+      <form action="/orders" method="POST">
+        <button name="order" value="order" class="OrderBtn" style="width: 100px;border-radius:8px; padding:20px" type="submit">Order</button>
+      </form>
     </div>
 
     <div class="pizzas">

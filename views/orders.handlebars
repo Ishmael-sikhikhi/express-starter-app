@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="wIDth=device-wIDth, initial-scale=1.0">
+  <title>Perfect Pizza</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div>
+    <div class="header">
+      <h1 style="border:rIDge #fff; wIDth: 100%; text-align:center">Orders</h1>
+    </div>
+
+    <div class="orders">
+      <div class="due">
+        <p class="id" name="{{ID}}" value="{{ID}}">
+          {{ID}}&nbsp
+          {{status}}
+          {{amount}}
+        </p>
+        <form action="/pay" method="POST">
+          <button type="submit">Pay</button>
+          <div class="pay">
+            {{ID}}
+
+            {{payment}}
+            {{price}}
+        </form>
+      </div>
+
+      <form action="/collect" method="POST">
+        <button type="submit">Collect</button>
+        <div class="collected">
+          {{ID}}
+          {{collection}}
+        </div>
+      </form>
+    </div>
+
+
+    <a href="/"><button type="submit">Home</button></a>
+  </div>
+  </div>
+
+</body>
+
+</html>

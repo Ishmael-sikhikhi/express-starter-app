@@ -4,6 +4,30 @@ body {
 	font-family: arial, sans-serif;	
 	font-size: 0.75em;
   }
+  .id{
+	  float: left;
+  }
+  .orders button{
+	border-radius: 8px;
+	padding: 1em;
+	margin: 1em;
+	font-size: 1em;
+	background-color: #ffba08;
+	/* border-radius: 0.25em; */
+	border: 0 solid snow;
+	color: snow;
+  }
+  .OrderBtn{
+	width: auto;
+	border-radius: 1px;
+	padding: 1em;
+	margin: 1em;
+	font-size: 1em;
+	background-color: #3FA9E2;
+	border-radius: 0.25em;
+	border: 0 solid snow;
+	color: snow;
+  }
 
 .btn {
 	padding: 1em;
