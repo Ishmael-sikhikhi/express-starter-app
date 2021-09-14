@@ -133,7 +133,7 @@ app.post('/pay', (req, res)=>{
 })
 
 app.post('/collect', (req, res)=>{
-	var thestatus = ' payment due'
+	var thestatus = ' collected'
 	
 	res.render('orders',{
 		ID,
